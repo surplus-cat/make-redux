@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
 import Header from './views/Header'
 import Content from './views/Content'
+import { Provider } from './react-redux'
 
 function createStore(reducer) {
   let state = null;
@@ -34,14 +35,14 @@ const store = createStore(themeReducer);
 	
 
 class Index extends Component {
-	static childContextTypes = {
-		store: PropTypes.object
-	}
+// 	static childContextTypes = {
+// 		store: PropTypes.object
+// 	}
 	
 
-  getChildContext() {
-    return { store };
-  }
+//   getChildContext() {
+//     return { store };
+//   }
 		
 	
 	render () {
@@ -55,6 +56,8 @@ class Index extends Component {
 }
 
 ReactDOM.render(
-	<Index />,
+	<Provider store={ store }>
+		<Index />
+	</Provider>,
 	document.getElementById('root')
 )

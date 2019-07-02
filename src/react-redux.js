@@ -38,3 +38,27 @@ export const connect = (mapStateToProps) => (WrapperComponent) => {
 
   return Connect;
 }
+
+export class Provider extends Component {
+
+  static propTypes = {
+    store: PropTypes.object,
+    children: PropTypes.any
+  }
+
+  static childContextTypes = {
+    store: PropTypes.object
+  }
+
+  getChildContext() {
+    return {
+      store: this.props.store
+    }
+  }
+
+  render() {
+    return (
+      <di>{this.props.children}</di>
+    )
+  }
+}
